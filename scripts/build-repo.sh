@@ -141,13 +141,20 @@ echo "    Release file generated at ${RELEASE_FILE}"
 if [[ -n "${GPG_KEY_ID:-}" ]] || gpg --list-secret-keys 2>/dev/null | grep -q 'sec'; then
     echo "==> Signing repository with GPG..."
 
-    GPG_OPTS=()
+    # Always use batch mode for CI/non-interactive environments
+    GPG_OPTS=(--batch --pinentry-mode loopback)
     if [[ -n "${GPG_KEY_ID:-}" ]]; then
         GPG_OPTS+=(--default-key "${GPG_KEY_ID}")
     fi
     if [[ -n "${GPG_PASSPHRASE:-}" ]]; then
-        GPG_OPTS+=(--batch --pinentry-mode loopback --passphrase "${GPG_PASSPHRASE}")
+        GPG_OPTS+=(--passphrase "${GPG_PASSPHRASE}")
+    else
+        # No passphrase needed (key without passphrase protection)
+        GPG_OPTS+=(--passphrase "")
     fi
+
+    # Remove old signature files before signing
+    rm -f "${DISTS_DIR}/InRelease" "${DISTS_DIR}/Release.gpg"
 
     # InRelease (clearsigned)
     gpg "${GPG_OPTS[@]}" --clearsign -o "${DISTS_DIR}/InRelease" "${RELEASE_FILE}"
