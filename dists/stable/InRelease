@@ -1,3 +1,6 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
 Origin: Deb Repo
 Label: Deb Repo
 Suite: stable
@@ -15,3 +18,19 @@ SHA256:
  5f4c6f52d7a3ffc8ce4371bfbad750de7d7dba8be82c92f9bc9d4e976de72100              367 main/binary-amd64/Packages.gz
  1e16fbc0f9a033b8ead7b1207700857c9e46f88be392ffa66dfc3f69146dd78b              573 main/binary-arm64/Packages
  1324d3111277fe5297af147ac671604d5a8891d99c9c4673906e47e91b12b410              365 main/binary-arm64/Packages.gz
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEdtfvsDstRx1DTdOlkSgUX5PPxpwFAmmLG+EACgkQkSgUX5PP
+xpxdpw//SPiUyAZzU4jZaWQjzczICzUuf22uP/Av8kBDWgWjQsW9sA66E2lm/cFq
+ynG6GLKhHEMDcFn6B9C9ZA7aXn1axsfJnwfIFMenVDn1SYg6WxRzKTpPGdJUuSVe
++cEZWW8X8O9OnkuLg57cpPQdSPLhlPsUkbyV9BKe0w7QrJS6iXiIqHsv07UDIe+C
+2L0Le/cZiUHx/2Q+KmB2btaDYhOI0DSV3EjGZb809EkCubYHAt83ZSVXYjjCX8jf
+Xsz1eIDmDdlmVl+uRlQGVphNDnVj8PAkVsFO7az9cG0RwZKSWh6IuX/E2yLZtD9X
+OhVH/xUI2ICkZ64qts4egK863b4ezuLoi77t3cRBLe4jyTrlplns+X65oZAWO62D
+pjtFAUB3h3zfoW8sL0Pp1ShuIlGGVEV1LsOyD8O0teipmBF6rLAiA9LcRStzDFy6
+853OmwLBYLrzWUJCb/MFCDOM2N7Re60vhwgOca5y51x7PSzjKTOBe8lfJnuh/4fm
++6fQoxyHEhp8sUvnjTGnKQXWzEoK+t/nYC8qaRnuxsC8V/2T5PGY4uXHJAAGHN/e
+sfwR7y5o5uIiy1RxKzFEVzZ5EAe4HdrqnX1fnxv0extBYPMBYAg0Y95SOzLGw6Q7
+Y8e2RQXXBpCwBUrr6uOpq2hydZkNkOuE/Vi0YI3qnHMGfaEkWi8=
+=sjt4
+-----END PGP SIGNATURE-----
