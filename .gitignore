@@ -1,0 +1,21 @@
+# Build artifacts (generated, not committed)
+/pool/
+/dists/
+
+# GPG
+*.gpg
+*.asc
+!public.key
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OpenSpec (development only)
+/openspec/

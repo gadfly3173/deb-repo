@@ -1,0 +1,94 @@
+# Build Debian Repository on Push
+#
+# Triggers when .deb files or config are pushed to master.
+# Collects all .deb files, builds APT repository metadata, deploys to gh-pages.
+#
+# Required GitHub Secrets (optional):
+#   GPG_PRIVATE_KEY  - ASCII-armored GPG private key for signing
+#   GPG_PASSPHRASE   - Passphrase for the GPG key
+
+name: Build Debian Repository
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '**.deb'
+      - 'upstream-repos.json'
+      - 'scripts/**'
+      - 'templates/**'
+
+concurrency:
+  group: deb-repo-build
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      HAS_GPG_KEY: ${{ secrets.GPG_PRIVATE_KEY != '' }}
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v4
+
+      - name: Checkout gh-pages
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages-repo
+          fetch-depth: 0
+        continue-on-error: true
+
+      - name: Initialize output directory
+        run: |
+          if [ ! -d gh-pages-repo/.git ]; then
+            mkdir -p gh-pages-repo
+          fi
+          mkdir -p gh-pages-repo/pool/main
+
+      - name: Collect .deb files
+        run: |
+          echo "==> Collecting .deb files from master..."
+          DEB_COUNT=0
+          while IFS= read -r -d '' deb_file; do
+            cp -v "$deb_file" gh-pages-repo/pool/main/
+            DEB_COUNT=$((DEB_COUNT + 1))
+          done < <(find . -maxdepth 1 -name '*.deb' -print0 2>/dev/null)
+          echo "Collected ${DEB_COUNT} .deb file(s)"
+
+      - name: Import GPG key
+        if: env.HAS_GPG_KEY == 'true'
+        env:
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+        run: |
+          echo "${GPG_PRIVATE_KEY}" | gpg --batch --import
+          GPG_KEY_ID=$(gpg --list-secret-keys --keyid-format long 2>/dev/null | grep 'sec' | head -1 | awk '{print $2}' | cut -d'/' -f2)
+          echo "GPG_KEY_ID=${GPG_KEY_ID}" >> "$GITHUB_ENV"
+
+      - name: Build repository
+        env:
+          GPG_KEY_ID: ${{ env.GPG_KEY_ID }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        run: ./scripts/build-repo.sh gh-pages-repo
+
+      - name: Export GPG public key
+        if: env.HAS_GPG_KEY == 'true'
+        run: gpg --export --armor > gh-pages-repo/public.key
+
+      - name: Generate pages
+        run: |
+          REPO_URL="https://$(echo ${{ github.repository }} | cut -d'/' -f1).github.io/$(echo ${{ github.repository }} | cut -d'/' -f2)"
+          ./scripts/generate-pages.sh gh-pages-repo "${REPO_URL}" templates
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./gh-pages-repo
+          keep_files: true
+          force_orphan: false

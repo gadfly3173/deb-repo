@@ -1,0 +1,7 @@
+[
+  {
+    "owner": "sourcegit-scm",
+    "repo": "sourcegit",
+    "pattern": "*.deb"
+  }
+]
