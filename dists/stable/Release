@@ -1,0 +1,17 @@
+Origin: Deb Repo
+Label: Deb Repo
+Suite: stable
+Codename: stable
+Architectures: amd64 arm64
+Components: main
+Date: Tue, 10 Feb 2026 10:18:48 +0000
+MD5Sum:
+ d41d8cd98f00b204e9800998ecf8427e                0 main/binary-amd64/Packages
+ d6779ed817d735c431d407cd1e5c5291               29 main/binary-amd64/Packages.gz
+ d41d8cd98f00b204e9800998ecf8427e                0 main/binary-arm64/Packages
+ d6779ed817d735c431d407cd1e5c5291               29 main/binary-arm64/Packages.gz
+SHA256:
+ e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855                0 main/binary-amd64/Packages
+ 4f714ac60479194de41a19f3e36761e6f93e06f9132d6fc3b1f47f0fe84be1fc               29 main/binary-amd64/Packages.gz
+ e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855                0 main/binary-arm64/Packages
+ 4f714ac60479194de41a19f3e36761e6f93e06f9132d6fc3b1f47f0fe84be1fc               29 main/binary-arm64/Packages.gz
