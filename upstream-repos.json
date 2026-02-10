@@ -3,10 +3,5 @@
     "owner": "sourcegit-scm",
     "repo": "sourcegit",
     "pattern": "*.deb"
-  },
-  {
-    "owner": "msojocs",
-    "repo": "wechat-web-devtools-linux",
-    "pattern": "*.deb"
   }
 ]
