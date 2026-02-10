@@ -18,6 +18,7 @@ on:
       - 'upstream-repos.json'
       - 'scripts/**'
       - 'templates/**'
+  workflow_dispatch:
 
 concurrency:
   group: deb-repo-build
