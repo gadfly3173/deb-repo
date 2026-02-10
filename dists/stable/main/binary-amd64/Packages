@@ -1,0 +1,13 @@
+Package: sourcegit
+Version: 2026.03
+Priority: optional
+Depends: libx11-6, libice6, libsm6, libicu | libicu76 | libicu74 | libicu72 | libicu71 | libicu70 | libicu69 | libicu68 | libicu67 | libicu66 | libicu65 | libicu63 | libicu60 | libicu57 | libicu55 | libicu52, xdg-utils
+Architecture: amd64
+Installed-Size: 64396
+Maintainer: longshuang@msn.cn
+Description: Open-source & Free Git GUI Client
+Filename: pool/main/sourcegit_2026.03-1_amd64.deb
+Size: 26121456
+MD5sum: 0784a54c807f4ab7ccb56ce01b997231
+SHA256: 30ef237b1b9c3b094f3f080ca104585b48fa2aeaddcff62d48bd720433dab8d7
+
