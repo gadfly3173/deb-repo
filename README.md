@@ -31,7 +31,7 @@ git push origin master
 
 ### 2. 自动同步上游 Release
 
-GitHub Actions 每日 06:00 UTC 自动执行，也可在 Actions 页面手动触发。
+GitHub Actions 每 4 小时自动执行，也可在 Actions 页面手动触发。
 
 流程：
 1. 读取 `upstream-repos.json` 中配置的仓库列表

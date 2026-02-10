@@ -2,6 +2,7 @@
 #
 # Triggers when .deb files or config are pushed to master.
 # Collects all .deb files, builds APT repository metadata, deploys to gh-pages.
+# If upstream-repos.json changes, also syncs upstream packages.
 #
 # Required GitHub Secrets (optional):
 #   GPG_PRIVATE_KEY  - ASCII-armored GPG private key for signing
@@ -36,6 +37,8 @@ jobs:
     steps:
       - name: Checkout master
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
 
       - name: Checkout gh-pages
         uses: actions/checkout@v4
@@ -52,18 +55,57 @@ jobs:
           fi
           mkdir -p gh-pages-repo/pool/main
 
+      - name: Check if upstream-repos.json changed
+        id: check_upstream
+        run: |
+          if git diff --name-only HEAD~1 HEAD 2>/dev/null | grep -q '^upstream-repos.json$'; then
+            echo "upstream_changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "upstream_changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Sync upstream packages
+        id: sync
+        if: steps.check_upstream.outputs.upstream_changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./scripts/sync-upstream.sh upstream-repos.json gh-pages-repo/pool/main
+
       - name: Collect .deb files
+        id: collect
         run: |
           echo "==> Collecting .deb files from master..."
           DEB_COUNT=0
+          NEW_COUNT=0
           while IFS= read -r -d '' deb_file; do
-            cp -v "$deb_file" gh-pages-repo/pool/main/
+            filename=$(basename "$deb_file")
+            if [ ! -f "gh-pages-repo/pool/main/${filename}" ]; then
+              cp -v "$deb_file" gh-pages-repo/pool/main/
+              NEW_COUNT=$((NEW_COUNT + 1))
+            fi
             DEB_COUNT=$((DEB_COUNT + 1))
           done < <(find . -maxdepth 1 -name '*.deb' -print0 2>/dev/null)
-          echo "Collected ${DEB_COUNT} .deb file(s)"
+          echo "Collected ${DEB_COUNT} .deb file(s), ${NEW_COUNT} new"
+          echo "new_local_packages=${NEW_COUNT}" >> "$GITHUB_OUTPUT"
+
+      - name: Check for changes
+        id: has_changes
+        run: |
+          UPSTREAM_NEW="${{ steps.sync.outputs.new_packages }}"
+          LOCAL_NEW="${{ steps.collect.outputs.new_local_packages }}"
+          # Default to 0 if empty
+          UPSTREAM_NEW="${UPSTREAM_NEW:-0}"
+          LOCAL_NEW="${LOCAL_NEW:-0}"
+          TOTAL=$((UPSTREAM_NEW + LOCAL_NEW))
+          echo "Total new packages: ${TOTAL} (upstream: ${UPSTREAM_NEW}, local: ${LOCAL_NEW})"
+          if [ "$TOTAL" -gt 0 ]; then
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Import GPG key
-        if: env.HAS_GPG_KEY == 'true'
+        if: env.HAS_GPG_KEY == 'true' && steps.has_changes.outputs.has_changes == 'true'
         env:
           GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
         run: |
@@ -72,24 +114,31 @@ jobs:
           echo "GPG_KEY_ID=${GPG_KEY_ID}" >> "$GITHUB_ENV"
 
       - name: Build repository
+        if: steps.has_changes.outputs.has_changes == 'true'
         env:
           GPG_KEY_ID: ${{ env.GPG_KEY_ID }}
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
         run: ./scripts/build-repo.sh gh-pages-repo
 
       - name: Export GPG public key
-        if: env.HAS_GPG_KEY == 'true'
+        if: env.HAS_GPG_KEY == 'true' && steps.has_changes.outputs.has_changes == 'true'
         run: gpg --export --armor > gh-pages-repo/public.key
 
       - name: Generate pages
+        if: steps.has_changes.outputs.has_changes == 'true'
         run: |
           REPO_URL="https://$(echo ${{ github.repository }} | cut -d'/' -f1).github.io/$(echo ${{ github.repository }} | cut -d'/' -f2)"
           ./scripts/generate-pages.sh gh-pages-repo "${REPO_URL}" templates
 
       - name: Deploy to gh-pages
+        if: steps.has_changes.outputs.has_changes == 'true'
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./gh-pages-repo
           keep_files: true
           force_orphan: false
+
+      - name: No changes
+        if: steps.has_changes.outputs.has_changes == 'false'
+        run: echo "No new packages. Repository is up to date."
