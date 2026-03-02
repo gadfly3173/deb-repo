@@ -12,6 +12,19 @@ MD5sum: 90b2c0ae989d40bf3900c50ee929ecda
 SHA256: 1f430369252ca31e26e240d544309e8c5f5f2f11147b1b71ccaf978653874691
 
 Package: sourcegit
+Version: 2026.05
+Priority: optional
+Depends: libx11-6, libice6, libsm6, libicu | libicu76 | libicu74 | libicu72 | libicu71 | libicu70 | libicu69 | libicu68 | libicu67 | libicu66 | libicu65 | libicu63 | libicu60 | libicu57 | libicu55 | libicu52, xdg-utils
+Architecture: amd64
+Installed-Size: 64400
+Maintainer: longshuang@msn.cn
+Description: Open-source & Free Git GUI Client
+Filename: pool/main/sourcegit_2026.05-1_amd64.deb
+Size: 26115712
+MD5sum: 6b6d3de4c276d6c21abd568979c3db3e
+SHA256: 86f210b8e515d3965bbe18363ca8c30d5f8603cf488f877fd44331ef7af11206
+
+Package: sourcegit
 Version: 2026.03
 Priority: optional
 Depends: libx11-6, libice6, libsm6, libicu | libicu76 | libicu74 | libicu72 | libicu71 | libicu70 | libicu69 | libicu68 | libicu67 | libicu66 | libicu65 | libicu63 | libicu60 | libicu57 | libicu55 | libicu52, xdg-utils
