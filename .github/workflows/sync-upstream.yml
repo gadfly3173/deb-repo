@@ -89,6 +89,50 @@ jobs:
           keep_files: true
           force_orphan: false
 
+      - name: Trim gh-pages history to latest 2 commits
+        if: steps.sync.outputs.new_packages != '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+
+          WORKDIR="$(mktemp -d)"
+          trap 'rm -rf "${WORKDIR}"' EXIT
+
+          REPO_URL="https://x-access-token:${GH_TOKEN}@github.com/${REPOSITORY}.git"
+          if ! git clone --branch gh-pages --single-branch "${REPO_URL}" "${WORKDIR}/gh-pages"; then
+            echo "Failed to clone gh-pages branch, skip trimming."
+            exit 0
+          fi
+          cd "${WORKDIR}/gh-pages"
+
+          COMMIT_COUNT="$(git rev-list --count HEAD)"
+          if [ "${COMMIT_COUNT}" -le 2 ]; then
+            echo "gh-pages has ${COMMIT_COUNT} commit(s), skip trimming."
+            exit 0
+          fi
+
+          PREV_COMMIT="$(git rev-parse HEAD~1)"
+          CUR_COMMIT="$(git rev-parse HEAD)"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git checkout --orphan gh-pages-trimmed
+          git rm -rf . >/dev/null 2>&1 || true
+          git checkout "${PREV_COMMIT}" -- .
+          git add -A
+          git commit -m "chore: keep previous gh-pages snapshot"
+
+          git rm -rf . >/dev/null 2>&1 || true
+          git checkout "${CUR_COMMIT}" -- .
+          git add -A
+          git commit --allow-empty -m "chore: keep latest gh-pages snapshot"
+
+          git branch -M gh-pages
+          git push origin gh-pages --force-with-lease
+
       - name: No changes
         if: steps.sync.outputs.new_packages == '0'
         run: echo "No new packages found. Repository is up to date."
