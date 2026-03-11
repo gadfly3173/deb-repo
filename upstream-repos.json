@@ -3,5 +3,10 @@
     "owner": "sourcegit-scm",
     "repo": "sourcegit",
     "pattern": "*.deb"
+  },
+  {
+    "owner": "farion1231",
+    "repo": "cc-switch",
+    "pattern": "*.deb"
   }
 ]
