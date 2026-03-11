@@ -48,6 +48,15 @@ jobs:
           fetch-depth: 0
         continue-on-error: true
 
+      - name: Validate gh-pages checkout
+        run: |
+          if git ls-remote --exit-code --heads origin gh-pages >/dev/null 2>&1; then
+            if [ ! -d gh-pages-repo/.git ]; then
+              echo "ERROR: gh-pages branch exists but checkout failed."
+              exit 1
+            fi
+          fi
+
       - name: Initialize output directory
         run: |
           if [ ! -d gh-pages-repo/.git ]; then
@@ -88,16 +97,22 @@ jobs:
           echo "Collected ${DEB_COUNT} .deb file(s), ${NEW_COUNT} new"
           echo "new_local_packages=${NEW_COUNT}" >> "$GITHUB_OUTPUT"
 
+      - name: Prune old package versions
+        id: prune
+        run: bash ./scripts/prune-old-versions.sh gh-pages-repo/pool/main
+
       - name: Check for changes
         id: has_changes
         run: |
           UPSTREAM_NEW="${{ steps.sync.outputs.new_packages }}"
           LOCAL_NEW="${{ steps.collect.outputs.new_local_packages }}"
+          PRUNED="${{ steps.prune.outputs.pruned_packages }}"
           # Default to 0 if empty
           UPSTREAM_NEW="${UPSTREAM_NEW:-0}"
           LOCAL_NEW="${LOCAL_NEW:-0}"
-          TOTAL=$((UPSTREAM_NEW + LOCAL_NEW))
-          echo "Total new packages: ${TOTAL} (upstream: ${UPSTREAM_NEW}, local: ${LOCAL_NEW})"
+          PRUNED="${PRUNED:-0}"
+          TOTAL=$((UPSTREAM_NEW + LOCAL_NEW + PRUNED))
+          echo "Total changes: ${TOTAL} (upstream new: ${UPSTREAM_NEW}, local new: ${LOCAL_NEW}, pruned: ${PRUNED})"
           if [ "$TOTAL" -gt 0 ]; then
             echo "has_changes=true" >> "$GITHUB_OUTPUT"
           else
@@ -136,7 +151,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./gh-pages-repo
-          keep_files: true
+          keep_files: false
           force_orphan: false
 
       - name: Trim gh-pages history to latest 2 commits
