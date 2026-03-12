@@ -1,0 +1,27 @@
+Package: sourcegit
+Version: 2026.05
+Priority: optional
+Depends: libx11-6, libice6, libsm6, libicu | libicu76 | libicu74 | libicu72 | libicu71 | libicu70 | libicu69 | libicu68 | libicu67 | libicu66 | libicu65 | libicu63 | libicu60 | libicu57 | libicu55 | libicu52, xdg-utils
+Architecture: amd64
+Installed-Size: 64400
+Maintainer: longshuang@msn.cn
+Description: Open-source & Free Git GUI Client
+Filename: pool/main/sourcegit_2026.05-1_amd64.deb
+Size: 26115712
+MD5sum: 6b6d3de4c276d6c21abd568979c3db3e
+SHA256: 86f210b8e515d3965bbe18363ca8c30d5f8603cf488f877fd44331ef7af11206
+
+Package: cc-switch
+Version: 3.12.1
+Architecture: amd64
+Installed-Size: 23002
+Maintainer: Jason Young
+Priority: optional
+Depends: libayatana-appindicator3-1, libwebkit2gtk-4.1-0, libgtk-3-0
+Description: All-in-One Assistant for Claude Code, Codex & Gemini CLI
+ (none)
+Filename: pool/main/CC-Switch-v3.12.1-Linux-x86_64.deb
+Size: 9833476
+MD5sum: de0b7a23249f913608fdbee63cae66fc
+SHA256: e414f0139cf734dbd723e27a16c1d92facc6dce276d47514bf61ceb32729b292
+
