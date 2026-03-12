@@ -12,16 +12,16 @@ MD5sum: 6b6d3de4c276d6c21abd568979c3db3e
 SHA256: 86f210b8e515d3965bbe18363ca8c30d5f8603cf488f877fd44331ef7af11206
 
 Package: cc-switch
-Version: 3.12.1
+Version: 3.12.2
 Architecture: amd64
-Installed-Size: 23002
+Installed-Size: 23013
 Maintainer: Jason Young
 Priority: optional
 Depends: libayatana-appindicator3-1, libwebkit2gtk-4.1-0, libgtk-3-0
 Description: All-in-One Assistant for Claude Code, Codex & Gemini CLI
  (none)
-Filename: pool/main/CC-Switch-v3.12.1-Linux-x86_64.deb
-Size: 9833476
-MD5sum: de0b7a23249f913608fdbee63cae66fc
-SHA256: e414f0139cf734dbd723e27a16c1d92facc6dce276d47514bf61ceb32729b292
+Filename: pool/main/CC-Switch-v3.12.2-Linux-x86_64.deb
+Size: 9839616
+MD5sum: 576037d408cfe38174bf8c0e786ac587
+SHA256: 5ee011bc51449dfa31617337093608fe2179382a1cad0988990184d8c65a862a
 

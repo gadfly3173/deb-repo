@@ -1,16 +1,16 @@
 Package: cc-switch
-Version: 3.12.1
+Version: 3.12.2
 Architecture: arm64
-Installed-Size: 21136
+Installed-Size: 21168
 Maintainer: Jason Young
 Priority: optional
 Depends: libayatana-appindicator3-1, libwebkit2gtk-4.1-0, libgtk-3-0
 Description: All-in-One Assistant for Claude Code, Codex & Gemini CLI
  (none)
-Filename: pool/main/CC-Switch-v3.12.1-Linux-arm64.deb
-Size: 9443316
-MD5sum: e3fa532e70c54da29311d30093ff7b95
-SHA256: 8fda056611ddb363ce245e6c2c845d50590de0a7aa290f753faaf49ac897cdb2
+Filename: pool/main/CC-Switch-v3.12.2-Linux-arm64.deb
+Size: 9447506
+MD5sum: 77b8c0036ecc0406c7ad17917d87502d
+SHA256: 94f483d0f1619aaf2c43088b019f319dd699b84641eb681c4cf000938c72e425
 
 Package: sourcegit
 Version: 2026.05
