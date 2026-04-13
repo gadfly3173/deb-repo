@@ -20,6 +20,18 @@ fi
 
 mkdir -p "${POOL_DIR}"
 
+glob_to_regex() {
+    local glob="$1"
+    local regex
+
+    # Escape regex meta characters first
+    regex=$(printf '%s' "$glob" | sed -e 's/[][(){}.+^$|\\]/\\&/g')
+    # Convert shell globs to regex
+    regex=$(printf '%s' "$regex" | sed -e 's/\*/.*/g' -e 's/\?/./g')
+
+    printf '^%s$' "$regex"
+}
+
 NEW_PACKAGES=0
 REPO_COUNT=$(jq length "$CONFIG")
 echo "==> Processing ${REPO_COUNT} upstream repository(ies)..."
@@ -33,6 +45,7 @@ for i in $(seq 0 $((REPO_COUNT - 1))); do
     OWNER=$(jq -r ".[$i].owner" "$CONFIG")
     REPO=$(jq -r ".[$i].repo" "$CONFIG")
     PATTERN=$(jq -r ".[$i].pattern // \"*.deb\"" "$CONFIG")
+    PATTERN_REGEX=$(glob_to_regex "$PATTERN")
 
     echo ""
     echo "--- ${OWNER}/${REPO} (pattern: ${PATTERN}) ---"
@@ -50,9 +63,13 @@ for i in $(seq 0 $((REPO_COUNT - 1))); do
     fi
     echo "    Latest release: ${TAG}"
 
-    # Get .deb assets
+    # Get .deb assets matching configured pattern
     ASSETS=$(echo "$RELEASE_JSON" | jq -r \
-        '[.assets[] | select(.name | test(".*\\.deb$")) | {name, url: .browser_download_url}]')
+        --arg pattern_regex "$PATTERN_REGEX" \
+        '[.assets[]
+          | select(.name | test(".*\\.deb$"))
+          | select(.name | test($pattern_regex))
+          | {name, url: .browser_download_url}]')
 
     ASSET_COUNT=$(echo "$ASSETS" | jq length)
     if [ "$ASSET_COUNT" -eq 0 ]; then

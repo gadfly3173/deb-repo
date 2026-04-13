@@ -8,5 +8,10 @@
     "owner": "farion1231",
     "repo": "cc-switch",
     "pattern": "*.deb"
+  },
+  {
+    "owner": "reqable",
+    "repo": "reqable-app",
+    "pattern": "reqable-app-linux-x86_64.deb"
   }
 ]

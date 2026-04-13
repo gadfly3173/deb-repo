@@ -28,11 +28,11 @@ detect_arch() {
     basename=$(basename "$deb_file")
 
     # Try filename first
-    if [[ "$basename" =~ _(amd64|x86_64)\.deb$ ]]; then
+    if [[ "$basename" =~ [_-](amd64|x86_64)\.deb$ ]]; then
         echo "amd64"
         return
     fi
-    if [[ "$basename" =~ _(arm64|aarch64)\.deb$ ]]; then
+    if [[ "$basename" =~ [_-](arm64|aarch64)\.deb$ ]]; then
         echo "arm64"
         return
     fi
