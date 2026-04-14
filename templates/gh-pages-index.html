@@ -18,22 +18,51 @@
 
   <h2>Quick Setup</h2>
 
+  <h3>Option 1: DEB822 format <small style="font-size:0.7em;color:#555;">(recommended — Debian Bookworm / Ubuntu 22.04+)</small></h3>
+
   <div class="step">
-    <h3>1. Import the GPG signing key</h3>
+    <h4>1. Import the GPG signing key</h4>
     <pre>curl -fsSL {{REPO_URL}}/public.key | sudo gpg --dearmor -o /usr/share/keyrings/{{REPO_NAME}}.gpg</pre>
   </div>
 
   <div class="step">
-    <h3>2. Add the repository to APT sources</h3>
+    <h4>2. Add the repository source (<code>.sources</code> file)</h4>
+    <pre>sudo tee /etc/apt/sources.list.d/{{REPO_NAME}}.sources &gt; /dev/null &lt;&lt; EOF
+Types: deb
+URIs: {{REPO_URL}}
+Suites: stable
+Components: main
+Architectures: $(dpkg --print-architecture)
+Signed-By: /usr/share/keyrings/{{REPO_NAME}}.gpg
+EOF</pre>
+  </div>
+
+  <div class="step">
+    <h4>3. Update package lists and install</h4>
+    <pre>sudo apt update
+sudo apt list --upgradable</pre>
+  </div>
+
+  <div class="note">
+    <strong>Note:</strong> If no GPG key is configured, replace <code>Signed-By: ...</code> with <code>Trusted: yes</code> in step 2.
+  </div>
+
+  <h3>Option 2: One-line format <small style="font-size:0.7em;color:#555;">(compatible with all versions)</small></h3>
+
+  <div class="step">
+    <h4>1. Import the GPG signing key</h4>
+    <pre>curl -fsSL {{REPO_URL}}/public.key | sudo gpg --dearmor -o /usr/share/keyrings/{{REPO_NAME}}.gpg</pre>
+  </div>
+
+  <div class="step">
+    <h4>2. Add the repository source (<code>.list</code> file)</h4>
     <pre>echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/{{REPO_NAME}}.gpg] {{REPO_URL}} stable main" | sudo tee /etc/apt/sources.list.d/{{REPO_NAME}}.list</pre>
   </div>
 
   <div class="step">
-    <h3>3. Update package lists and install</h3>
-    <pre>
-        sudo apt update
-        sudo apt list --upgradable
-      </pre>
+    <h4>3. Update package lists and install</h4>
+    <pre>sudo apt update
+sudo apt list --upgradable</pre>
   </div>
 
   <div class="note">

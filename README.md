@@ -132,7 +132,32 @@ gpg --export-secret-keys --armor ABCDEF1234567890
 
 ## 用户端配置
 
-部署完成后，终端用户按以下步骤添加仓库：
+部署完成后，终端用户按以下步骤添加仓库。
+
+### 方式一：DEB822 格式（推荐，适用于 Debian Bookworm / Ubuntu 22.04+）
+
+```bash
+# 1. 导入 GPG 公钥
+curl -fsSL https://<username>.github.io/<repo>/public.key \
+  | sudo gpg --dearmor -o /usr/share/keyrings/deb-repo.gpg
+
+# 2. 添加仓库源（写入 .sources 文件）
+sudo tee /etc/apt/sources.list.d/deb-repo.sources > /dev/null << EOF
+Types: deb
+URIs: https://<username>.github.io/<repo>
+Suites: stable
+Components: main
+Architectures: $(dpkg --print-architecture)
+Signed-By: /usr/share/keyrings/deb-repo.gpg
+EOF
+
+# 3. 更新并安装
+sudo apt update
+```
+
+> 如果未配置 GPG 密钥，将 `Signed-By: ...` 行替换为 `Trusted: yes`。
+
+### 方式二：传统 one-line 格式（兼容所有版本）
 
 ```bash
 # 1. 导入 GPG 公钥
@@ -147,6 +172,8 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/deb-r
 # 3. 更新并安装
 sudo apt update
 ```
+
+> 如果未配置 GPG 密钥，将 `[arch=... signed-by=...]` 替换为 `[arch=... trusted=yes]`。
 
 ## 支持的架构
 
