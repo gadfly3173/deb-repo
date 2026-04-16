@@ -4,9 +4,10 @@
 # Collects all .deb files, builds APT repository metadata, deploys to gh-pages.
 # If upstream-repos.json changes, also syncs upstream packages.
 #
-# Required GitHub Secrets (optional):
+# Optional Secrets:
 #   GPG_PRIVATE_KEY  - ASCII-armored GPG private key for signing
 #   GPG_PASSPHRASE   - Passphrase for the GPG key
+#   GL_TOKEN         - GitLab token (for private GitLab projects)
 
 name: Build Debian Repository
 
@@ -78,6 +79,7 @@ jobs:
         if: steps.check_upstream.outputs.upstream_changed == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GL_TOKEN: ${{ secrets.GL_TOKEN }}
         run: ./scripts/sync-upstream.sh upstream-repos.json gh-pages-repo/pool/main
 
       - name: Collect .deb files

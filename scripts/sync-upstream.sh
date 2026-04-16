@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
-# sync-upstream.sh - Download new .deb packages from upstream GitHub releases
+# sync-upstream.sh - Download new .deb packages from upstream GitHub/GitLab releases
 # Usage: ./scripts/sync-upstream.sh <config-file> <pool-dir>
 #
 # Environment variables:
 #   GH_TOKEN - GitHub token for API authentication (optional but recommended)
+#   GL_TOKEN - GitLab token for API authentication (optional)
 #
 # Outputs (for CI):
 #   Writes "new_packages=<count>" to $GITHUB_OUTPUT if available
@@ -36,40 +37,111 @@ NEW_PACKAGES=0
 REPO_COUNT=$(jq length "$CONFIG")
 echo "==> Processing ${REPO_COUNT} upstream repository(ies)..."
 
-AUTH_HEADER=()
+GH_AUTH_HEADER=()
 if [ -n "${GH_TOKEN:-}" ]; then
-    AUTH_HEADER=(-H "Authorization: Bearer ${GH_TOKEN}")
+    GH_AUTH_HEADER=(-H "Authorization: Bearer ${GH_TOKEN}")
+fi
+
+GL_AUTH_HEADER=()
+if [ -n "${GL_TOKEN:-}" ]; then
+    GL_AUTH_HEADER=(-H "PRIVATE-TOKEN: ${GL_TOKEN}")
 fi
 
 for i in $(seq 0 $((REPO_COUNT - 1))); do
-    OWNER=$(jq -r ".[$i].owner" "$CONFIG")
-    REPO=$(jq -r ".[$i].repo" "$CONFIG")
+    PROVIDER=$(jq -r ".[$i].provider // \"github\"" "$CONFIG")
+    OWNER=$(jq -r ".[$i].owner // empty" "$CONFIG")
+    REPO=$(jq -r ".[$i].repo // empty" "$CONFIG")
+    PROJECT=$(jq -r ".[$i].project // empty" "$CONFIG")
     PATTERN=$(jq -r ".[$i].pattern // \"*.deb\"" "$CONFIG")
     PATTERN_REGEX=$(glob_to_regex "$PATTERN")
 
-    echo ""
-    echo "--- ${OWNER}/${REPO} (pattern: ${PATTERN}) ---"
+    RELEASE_JSON=""
+    TAG=""
+    ASSETS="[]"
+    TARGET_DESC=""
+    DOWNLOAD_AUTH_HEADER=()
 
-    # Get latest release
-    RELEASE_JSON=$(curl -sL \
-        -H "Accept: application/vnd.github+json" \
-        "${AUTH_HEADER[@]}" \
-        "https://api.github.com/repos/${OWNER}/${REPO}/releases/latest" 2>/dev/null)
+    case "$PROVIDER" in
+        github)
+            if [ -z "$OWNER" ] || [ -z "$REPO" ]; then
+                echo ""
+                echo "--- [skip] Invalid GitHub config at index ${i}: owner/repo is required ---"
+                continue
+            fi
 
-    TAG=$(echo "$RELEASE_JSON" | jq -r '.tag_name // empty')
+            TARGET_DESC="${OWNER}/${REPO}"
+            DOWNLOAD_AUTH_HEADER=("${GH_AUTH_HEADER[@]}")
+
+            echo ""
+            echo "--- github: ${TARGET_DESC} (pattern: ${PATTERN}) ---"
+
+            RELEASE_JSON=$(curl -fsSL \
+                -H "Accept: application/vnd.github+json" \
+                "${GH_AUTH_HEADER[@]}" \
+                "https://api.github.com/repos/${OWNER}/${REPO}/releases/latest" 2>/dev/null || true)
+
+            TAG=$(echo "$RELEASE_JSON" | jq -r '.tag_name // empty')
+
+            ASSETS=$(echo "$RELEASE_JSON" | jq -r \
+                --arg pattern_regex "$PATTERN_REGEX" \
+                '[.assets[]?
+                  | select(.name | test(".*\\.deb$"))
+                  | select(.name | test($pattern_regex))
+                  | {name, url: .browser_download_url}]')
+            ;;
+        gitlab)
+            if [ -z "$PROJECT" ]; then
+                if [ -n "$OWNER" ] && [ -n "$REPO" ]; then
+                    PROJECT="${OWNER}/${REPO}"
+                fi
+            fi
+
+            if [ -z "$PROJECT" ]; then
+                echo ""
+                echo "--- [skip] Invalid GitLab config at index ${i}: project or owner/repo is required ---"
+                continue
+            fi
+
+            TARGET_DESC="$PROJECT"
+            DOWNLOAD_AUTH_HEADER=("${GL_AUTH_HEADER[@]}")
+
+            echo ""
+            echo "--- gitlab: ${TARGET_DESC} (pattern: ${PATTERN}) ---"
+
+            PROJECT_ENCODED=$(jq -nr --arg v "$PROJECT" '$v|@uri')
+            RELEASE_JSON=$(curl -fsSL \
+                -H "Accept: application/json" \
+                "${GL_AUTH_HEADER[@]}" \
+                "https://gitlab.com/api/v4/projects/${PROJECT_ENCODED}/releases/permalink/latest" 2>/dev/null || true)
+
+            TAG=$(echo "$RELEASE_JSON" | jq -r '.tag_name // empty')
+
+            ASSETS=$(echo "$RELEASE_JSON" | jq -r \
+                --arg pattern_regex "$PATTERN_REGEX" \
+                '[.assets.links[]?
+                  | .download_url = (.direct_asset_url // .url // "")
+                  | select(.download_url != "")
+                  | .asset_name = (if (.name // "" | test(".*\\.deb$"))
+                                   then .name
+                                   else (.download_url | split("?")[0] | split("/") | last)
+                                   end)
+                  | select(.asset_name | test(".*\\.deb$"))
+                  | select(.asset_name | test($pattern_regex))
+                  | {name: .asset_name, url: .download_url}]')
+            ;;
+        *)
+            echo ""
+            echo "--- [skip] Unsupported provider '${PROVIDER}' at index ${i} ---"
+            continue
+            ;;
+    esac
+
+    # Validate release
     if [ -z "$TAG" ]; then
         echo "    No releases found, skipping"
         continue
     fi
     echo "    Latest release: ${TAG}"
-
-    # Get .deb assets matching configured pattern
-    ASSETS=$(echo "$RELEASE_JSON" | jq -r \
-        --arg pattern_regex "$PATTERN_REGEX" \
-        '[.assets[]
-          | select(.name | test(".*\\.deb$"))
-          | select(.name | test($pattern_regex))
-          | {name, url: .browser_download_url}]')
 
     ASSET_COUNT=$(echo "$ASSETS" | jq length)
     if [ "$ASSET_COUNT" -eq 0 ]; then
@@ -99,7 +171,11 @@ for i in $(seq 0 $((REPO_COUNT - 1))); do
         fi
 
         echo "    [download] ${ASSET_NAME} (${ARCH})"
-        curl -sL -o "${POOL_DIR}/${ASSET_NAME}" "$ASSET_URL"
+        if ! curl -fsSL "${DOWNLOAD_AUTH_HEADER[@]}" -o "${POOL_DIR}/${ASSET_NAME}" "$ASSET_URL"; then
+            echo "    [error] Failed to download ${ASSET_NAME}"
+            rm -f "${POOL_DIR}/${ASSET_NAME}"
+            continue
+        fi
 
         if [ -f "${POOL_DIR}/${ASSET_NAME}" ]; then
             NEW_PACKAGES=$((NEW_PACKAGES + 1))

@@ -13,5 +13,15 @@
     "owner": "reqable",
     "repo": "reqable-app",
     "pattern": "reqable-app-linux-x86_64.deb"
+  },
+  {
+    "provider": "gitlab",
+    "project": "gitlab-org/cli",
+    "pattern": "glab_*_linux_amd64.deb"
+  },
+  {
+    "provider": "gitlab",
+    "project": "gitlab-org/cli",
+    "pattern": "glab_*_linux_arm64.deb"
   }
 ]

@@ -1,13 +1,14 @@
 # Sync Upstream Releases
 #
-# Checks configured upstream GitHub repos for new .deb packages every 4 hours.
+# Checks configured upstream GitHub/GitLab repos for new .deb packages every 4 hours.
 # Downloads new packages and rebuilds the APT repository.
 #
 # Configure upstream repos in upstream-repos.json on master branch.
 #
-# Required GitHub Secrets (optional):
+# Optional Secrets:
 #   GPG_PRIVATE_KEY  - ASCII-armored GPG private key for signing
 #   GPG_PASSPHRASE   - Passphrase for the GPG key
+#   GL_TOKEN         - GitLab token (for private GitLab projects)
 
 name: Sync Upstream Releases
 
@@ -61,6 +62,7 @@ jobs:
         id: sync
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GL_TOKEN: ${{ secrets.GL_TOKEN }}
         run: ./scripts/sync-upstream.sh upstream-repos.json gh-pages-repo/pool/main
 
       - name: Prune old package versions
