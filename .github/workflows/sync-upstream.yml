@@ -92,8 +92,27 @@ jobs:
       - name: Generate pages
         if: steps.sync.outputs.new_packages != '0' || steps.prune.outputs.pruned_packages != '0'
         run: |
-          REPO_URL="https://$(echo ${{ github.repository }} | cut -d'/' -f1).github.io/$(echo ${{ github.repository }} | cut -d'/' -f2)"
-          ./scripts/generate-pages.sh gh-pages-repo "${REPO_URL}" templates
+          FALLBACK_REPO_URL="https://$(echo ${{ github.repository }} | cut -d'/' -f1).github.io/$(echo ${{ github.repository }} | cut -d'/' -f2)"
+          CNAME_DOMAIN=""
+
+          if [ -f "CNAME" ]; then
+            CNAME_DOMAIN="$(sed -n '1p' CNAME | tr -d '[:space:]')"
+            if [ -n "${CNAME_DOMAIN}" ]; then
+              cp CNAME gh-pages-repo/CNAME
+            fi
+          elif [ -f "gh-pages-repo/CNAME" ]; then
+            rm -f gh-pages-repo/CNAME
+          fi
+
+          if [ -n "${CNAME_DOMAIN}" ]; then
+            REPO_URL="https://${CNAME_DOMAIN}"
+            echo "Using CNAME domain: ${CNAME_DOMAIN}"
+          else
+            REPO_URL="${FALLBACK_REPO_URL}"
+            echo "CNAME not found, fallback to: ${REPO_URL}"
+          fi
+
+          ./scripts/generate-pages.sh gh-pages-repo "${REPO_URL}" templates "https://github.com/${{ github.repository }}"
 
       - name: Deploy to gh-pages
         if: steps.sync.outputs.new_packages != '0' || steps.prune.outputs.pruned_packages != '0'

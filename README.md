@@ -131,11 +131,21 @@ gpg --export-secret-keys --armor ABCDEF1234567890
 3. Branch 选择 `gh-pages`，目录选 `/ (root)`
 4. 保存
 
-仓库地址将为：`https://<username>.github.io/<repo-name>`
+默认仓库地址为：`https://<username>.github.io/<repo-name>`
+
+### 自定义域名（CNAME）
+
+本仓库支持 **CNAME 优先，github.io 回落**：
+
+1. 在仓库根目录创建 `CNAME` 文件（本仓库已提供），内容为你的自定义域名，例如：`deb-repo.gadfly.vip`
+2. 在 DNS 中为该域名添加 CNAME 记录（你已完成）
+3. Workflow 生成页面时会：
+  - 若检测到 `CNAME`，则发布 `gh-pages/CNAME` 并使用 `https://<your-domain>` 作为仓库 URL
+  - 若未检测到 `CNAME`，自动回落到 `https://<username>.github.io/<repo-name>`
 
 ## 仓库结构（gh-pages 分支）
 
-```
+```text
 ├── index.html              # 使用说明页面
 ├── README.md               # 仓库说明
 ├── public.key              # GPG 公钥（如有配置）
@@ -165,13 +175,13 @@ gpg --export-secret-keys --armor ABCDEF1234567890
 
 ```bash
 # 1. 导入 GPG 公钥
-curl -fsSL https://<username>.github.io/<repo>/public.key \
+curl -fsSL https://deb-repo.gadfly.vip/public.key \
   | sudo gpg --dearmor -o /usr/share/keyrings/deb-repo.gpg
 
 # 2. 添加仓库源（写入 .sources 文件）
 sudo tee /etc/apt/sources.list.d/deb-repo.sources > /dev/null << EOF
 Types: deb
-URIs: https://<username>.github.io/<repo>
+URIs: https://deb-repo.gadfly.vip
 Suites: stable
 Components: main
 Architectures: $(dpkg --print-architecture)
@@ -188,12 +198,12 @@ sudo apt update
 
 ```bash
 # 1. 导入 GPG 公钥
-curl -fsSL https://<username>.github.io/<repo>/public.key \
+curl -fsSL https://deb-repo.gadfly.vip/public.key \
   | sudo gpg --dearmor -o /usr/share/keyrings/deb-repo.gpg
 
 # 2. 添加仓库源
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/deb-repo.gpg] \
-  https://<username>.github.io/<repo> stable main" \
+  https://deb-repo.gadfly.vip stable main" \
   | sudo tee /etc/apt/sources.list.d/deb-repo.list
 
 # 3. 更新并安装
@@ -210,7 +220,7 @@ sudo apt update
 
 ## 文件说明
 
-```
+```text
 ├── .github/workflows/
 │   ├── build-on-push.yml    # Push 触发的仓库构建 workflow
 │   └── sync-upstream.yml    # 上游同步 workflow
@@ -221,6 +231,7 @@ sudo apt update
 ├── templates/
 │   ├── gh-pages-index.html  # gh-pages index.html 模板
 │   └── gh-pages-README.md   # gh-pages README.md 模板
+├── CNAME                    # GitHub Pages 自定义域名（可选，存在时优先使用）
 ├── upstream-repos.json      # 上游仓库配置
 ├── *.deb                    # 手动添加的 .deb 包
 ├── .gitignore
