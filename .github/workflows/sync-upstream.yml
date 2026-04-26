@@ -70,7 +70,7 @@ jobs:
         run: bash ./scripts/prune-old-versions.sh gh-pages-repo/pool/main
 
       - name: Import GPG key
-        if: env.HAS_GPG_KEY == 'true' && (steps.sync.outputs.new_packages != '0' || steps.prune.outputs.pruned_packages != '0')
+        if: env.HAS_GPG_KEY == 'true' && (github.event_name == 'workflow_dispatch' || steps.sync.outputs.new_packages != '0' || steps.prune.outputs.pruned_packages != '0')
         env:
           GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
         run: |
@@ -79,18 +79,18 @@ jobs:
           echo "GPG_KEY_ID=${GPG_KEY_ID}" >> "$GITHUB_ENV"
 
       - name: Build repository
-        if: steps.sync.outputs.new_packages != '0' || steps.prune.outputs.pruned_packages != '0'
+        if: github.event_name == 'workflow_dispatch' || steps.sync.outputs.new_packages != '0' || steps.prune.outputs.pruned_packages != '0'
         env:
           GPG_KEY_ID: ${{ env.GPG_KEY_ID }}
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
         run: ./scripts/build-repo.sh gh-pages-repo
 
       - name: Export GPG public key
-        if: env.HAS_GPG_KEY == 'true' && (steps.sync.outputs.new_packages != '0' || steps.prune.outputs.pruned_packages != '0')
+        if: env.HAS_GPG_KEY == 'true' && (github.event_name == 'workflow_dispatch' || steps.sync.outputs.new_packages != '0' || steps.prune.outputs.pruned_packages != '0')
         run: gpg --export --armor > gh-pages-repo/public.key
 
       - name: Generate pages
-        if: steps.sync.outputs.new_packages != '0' || steps.prune.outputs.pruned_packages != '0'
+        if: github.event_name == 'workflow_dispatch' || steps.sync.outputs.new_packages != '0' || steps.prune.outputs.pruned_packages != '0'
         run: |
           FALLBACK_REPO_URL="https://$(echo ${{ github.repository }} | cut -d'/' -f1).github.io/$(echo ${{ github.repository }} | cut -d'/' -f2)"
           CNAME_DOMAIN=""
@@ -115,7 +115,7 @@ jobs:
           ./scripts/generate-pages.sh gh-pages-repo "${REPO_URL}" templates "https://github.com/${{ github.repository }}"
 
       - name: Deploy to gh-pages
-        if: steps.sync.outputs.new_packages != '0' || steps.prune.outputs.pruned_packages != '0'
+        if: github.event_name == 'workflow_dispatch' || steps.sync.outputs.new_packages != '0' || steps.prune.outputs.pruned_packages != '0'
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -124,7 +124,7 @@ jobs:
           force_orphan: false
 
       - name: Trim gh-pages history to latest 2 commits
-        if: steps.sync.outputs.new_packages != '0' || steps.prune.outputs.pruned_packages != '0'
+        if: github.event_name == 'workflow_dispatch' || steps.sync.outputs.new_packages != '0' || steps.prune.outputs.pruned_packages != '0'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPOSITORY: ${{ github.repository }}
@@ -168,5 +168,5 @@ jobs:
           git push origin gh-pages --force-with-lease
 
       - name: No changes
-        if: steps.sync.outputs.new_packages == '0' && steps.prune.outputs.pruned_packages == '0'
+        if: github.event_name != 'workflow_dispatch' && steps.sync.outputs.new_packages == '0' && steps.prune.outputs.pruned_packages == '0'
         run: echo "No new packages found. Repository is up to date."
