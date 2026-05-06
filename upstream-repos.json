@@ -20,6 +20,11 @@
     "pattern": "glab_*_linux_amd64.deb"
   },
   {
+    "owner": "gadfly3173",
+    "repo": "mission-center-deb",
+    "pattern": "*.deb"
+  },
+  {
     "provider": "gitlab",
     "project": "gitlab-org/cli",
     "pattern": "glab_*_linux_arm64.deb"
