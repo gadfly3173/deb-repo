@@ -1,15 +1,15 @@
 Package: sourcegit
-Version: 2026.10
+Version: 2026.11
 Priority: optional
 Depends: libx11-6, libice6, libsm6, libicu | libicu78 | libicu77 | libicu76 | libicu74 | libicu72 | libicu71 | libicu70 | libicu69 | libicu68 | libicu67 | libicu66 | libicu65 | libicu63, xdg-utils
 Architecture: arm64
-Installed-Size: 63976
+Installed-Size: 64040
 Maintainer: longshuang@msn.cn
 Description: Open-source & Free Git GUI Client
-Filename: pool/main/sourcegit_2026.10-1_arm64.deb
-Size: 24605080
-MD5sum: cd528cd6b83e0d5c220b1df2908e9f80
-SHA256: c3a678c6364a8b041b711be44b8413dc5a650555f68add944480c0e1d87b7e0a
+Filename: pool/main/sourcegit_2026.11-1_arm64.deb
+Size: 24628826
+MD5sum: a2557653fb5a708df7a28d2c009b8d06
+SHA256: 911b2ce9c0a9d347d63dee18d8dd1ce8e012c454b9229199b83873736f372d2a
 
 Package: cc-switch
 Version: 3.15.0

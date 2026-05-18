@@ -1,16 +1,3 @@
-Package: sourcegit
-Version: 2026.10
-Priority: optional
-Depends: libx11-6, libice6, libsm6, libicu | libicu78 | libicu77 | libicu76 | libicu74 | libicu72 | libicu71 | libicu70 | libicu69 | libicu68 | libicu67 | libicu66 | libicu65 | libicu63, xdg-utils
-Architecture: amd64
-Installed-Size: 64872
-Maintainer: longshuang@msn.cn
-Description: Open-source & Free Git GUI Client
-Filename: pool/main/sourcegit_2026.10-1_amd64.deb
-Size: 26325704
-MD5sum: 8ca9cc95337050c66054107ffa9f4266
-SHA256: a9c61630f9c0d610f439c6ce3a5acdeed3a4678db90acd8a94584d1f5892993e
-
 Package: reqable
 Version: 3.0.40
 Architecture: amd64
@@ -39,6 +26,19 @@ Filename: pool/main/glab_1.97.0_linux_amd64.deb
 Size: 17509486
 MD5sum: 2ec944ada04870706df13befd2f7c6b9
 SHA256: 41df64133bc5fa1ecb752f09d8cbe3d36ced85d5b68c669e234bae48252edc86
+
+Package: sourcegit
+Version: 2026.11
+Priority: optional
+Depends: libx11-6, libice6, libsm6, libicu | libicu78 | libicu77 | libicu76 | libicu74 | libicu72 | libicu71 | libicu70 | libicu69 | libicu68 | libicu67 | libicu66 | libicu65 | libicu63, xdg-utils
+Architecture: amd64
+Installed-Size: 64940
+Maintainer: longshuang@msn.cn
+Description: Open-source & Free Git GUI Client
+Filename: pool/main/sourcegit_2026.11-1_amd64.deb
+Size: 26351710
+MD5sum: b4f95fa50ae9a356c9adff2f84f11513
+SHA256: d39d03303f49f45f2d7014a831f3a577a89629acf2ada8d3d8060df06a956244
 
 Package: io.missioncenter
 Version: 1.1.0-1
