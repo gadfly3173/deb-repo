@@ -1,0 +1,76 @@
+Package: sourcegit
+Version: 2026.10
+Priority: optional
+Depends: libx11-6, libice6, libsm6, libicu | libicu78 | libicu77 | libicu76 | libicu74 | libicu72 | libicu71 | libicu70 | libicu69 | libicu68 | libicu67 | libicu66 | libicu65 | libicu63, xdg-utils
+Architecture: amd64
+Installed-Size: 64872
+Maintainer: longshuang@msn.cn
+Description: Open-source & Free Git GUI Client
+Filename: pool/main/sourcegit_2026.10-1_amd64.deb
+Size: 26325704
+MD5sum: 8ca9cc95337050c66054107ffa9f4266
+SHA256: a9c61630f9c0d610f439c6ce3a5acdeed3a4678db90acd8a94584d1f5892993e
+
+Package: reqable
+Version: 3.0.40
+Architecture: amd64
+Priority: optional
+Depends: ca-certificates
+Maintainer: Megatron King
+Homepage: https://reqable.com/
+Description: Advanced HTTP Productivity Tools!
+Filename: pool/main/reqable-app-linux-x86_64.deb
+Size: 26013216
+MD5sum: 2339a82d36c487a2366d1da6bf3c3939
+SHA256: 75d6c5924263810c992447bbb0be5c05ba666a64b383b99583fcebde45c62f32
+
+Package: glab
+Version: 1.97.0
+Section: 
+Priority: optional
+Architecture: amd64
+Architecture-Variant: amd64v1
+Maintainer: GitLab<contact-project+gitlab-org-cli-34675721-issue-@incoming.gitlab.com>
+Installed-Size: 48844
+Depends: git
+Homepage: https://gitlab.com/gitlab-org/cli
+Description: An open source GitLab CLI tool
+Filename: pool/main/glab_1.97.0_linux_amd64.deb
+Size: 17509486
+MD5sum: 2ec944ada04870706df13befd2f7c6b9
+SHA256: 41df64133bc5fa1ecb752f09d8cbe3d36ced85d5b68c669e234bae48252edc86
+
+Package: io.missioncenter
+Version: 1.1.0-1
+Section: utils
+Priority: optional
+Architecture: amd64
+Maintainer: Gadfly <gadfly@gadfly.vip>
+Depends: libbz2-1.0,libc6,libcom-err2,libexpat1,libgcc-s1,libgpg-error0,libkeyutils1,liblzma5,libselinux1,libstdc++6,zlib1g
+Homepage: https://github.com/gadfly3173/mission-center-deb
+Installed-Size: 196880
+Description: Monitor system resource usage
+ Mission Center monitors CPU, memory, disk, network and GPU usage.
+ It also shows per-application and per-process statistics in a modern GTK interface.
+ This package bundles the newer GTK and libadwaita runtime under /opt/io.missioncenter
+ so it can be built and distributed from GitHub Actions while remaining runnable
+ on Ubuntu 22.04 and newer systems.
+Filename: pool/main/io.missioncenter_1.1.0-1_amd64.deb
+Size: 43529824
+MD5sum: bebcf58ba44942f65abe3c31f2a6c6a5
+SHA256: 9eecb2f640613c622af2254f373c97a01eaa096b3ea07b060816cdd923b4cb4a
+
+Package: cc-switch
+Version: 3.15.0
+Architecture: amd64
+Installed-Size: 28179
+Maintainer: Jason Young
+Priority: optional
+Depends: libayatana-appindicator3-1, libwebkit2gtk-4.1-0, libgtk-3-0
+Description: All-in-One Assistant for Claude Code, Codex & Gemini CLI
+ (none)
+Filename: pool/main/CC-Switch-v3.15.0-Linux-x86_64.deb
+Size: 13009796
+MD5sum: 15b1bbdc5bf3e1a5fc80bc4a2027ed76
+SHA256: a52546365b046a249d59c3d89e55f53b1bd1f081ca7d9742fd6966379e6eef2a
+

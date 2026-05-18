@@ -1,0 +1,42 @@
+Package: sourcegit
+Version: 2026.10
+Priority: optional
+Depends: libx11-6, libice6, libsm6, libicu | libicu78 | libicu77 | libicu76 | libicu74 | libicu72 | libicu71 | libicu70 | libicu69 | libicu68 | libicu67 | libicu66 | libicu65 | libicu63, xdg-utils
+Architecture: arm64
+Installed-Size: 63976
+Maintainer: longshuang@msn.cn
+Description: Open-source & Free Git GUI Client
+Filename: pool/main/sourcegit_2026.10-1_arm64.deb
+Size: 24605080
+MD5sum: cd528cd6b83e0d5c220b1df2908e9f80
+SHA256: c3a678c6364a8b041b711be44b8413dc5a650555f68add944480c0e1d87b7e0a
+
+Package: cc-switch
+Version: 3.15.0
+Architecture: arm64
+Installed-Size: 25956
+Maintainer: Jason Young
+Priority: optional
+Depends: libayatana-appindicator3-1, libwebkit2gtk-4.1-0, libgtk-3-0
+Description: All-in-One Assistant for Claude Code, Codex & Gemini CLI
+ (none)
+Filename: pool/main/CC-Switch-v3.15.0-Linux-arm64.deb
+Size: 12541146
+MD5sum: 27881aefb780a6b2ffe49d9b39ec675f
+SHA256: 8532dfe70218ef3f90c617e5e7bfd160d7867dff2ffd44c310ce546d27f9ae89
+
+Package: glab
+Version: 1.97.0
+Section: 
+Priority: optional
+Architecture: arm64
+Maintainer: GitLab<contact-project+gitlab-org-cli-34675721-issue-@incoming.gitlab.com>
+Installed-Size: 45996
+Depends: git
+Homepage: https://gitlab.com/gitlab-org/cli
+Description: An open source GitLab CLI tool
+Filename: pool/main/glab_1.97.0_linux_arm64.deb
+Size: 16180380
+MD5sum: ceb090eac28aa48d6c35aca8e90d5b0c
+SHA256: 3238f78ba94dd13d785e4902cfdf23ccdf6116b4d776c71eb8760231ade7de68
+
