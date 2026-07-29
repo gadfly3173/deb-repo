@@ -28,5 +28,10 @@
     "provider": "gitlab",
     "project": "gitlab-org/cli",
     "pattern": "glab_*_linux_arm64.deb"
+  },
+  {
+    "owner": "t8y2",
+    "repo": "dbx",
+    "pattern": "*.deb"
   }
 ]
