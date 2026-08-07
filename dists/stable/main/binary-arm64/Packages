@@ -1,30 +1,16 @@
 Package: dbx
-Version: 0.5.76
+Version: 0.5.77
 Architecture: arm64
-Installed-Size: 50758
+Installed-Size: 51406
 Maintainer: skyler
 Priority: optional
 Depends: libappindicator3-1, libwebkit2gtk-4.1-0, libgtk-3-0
 Description: Open-source database management tool
  (none)
-Filename: pool/main/DBX_0.5.76_arm64.deb
-Size: 26936552
-MD5sum: 40a00a2134271aa4ece703644798e8d0
-SHA256: a93e31b31d44315efee81698d89cd7a0ae12a5470491c19700fca5e3549ab7d3
-
-Package: cc-switch
-Version: 3.19.2
-Architecture: arm64
-Installed-Size: 27493
-Maintainer: Jason Young
-Priority: optional
-Depends: libayatana-appindicator3-1, libwebkit2gtk-4.1-0, libgtk-3-0
-Description: All-in-One Assistant for Claude Code, Codex & Gemini CLI
- (none)
-Filename: pool/main/CC-Switch-v3.19.2-Linux-arm64.deb
-Size: 12621396
-MD5sum: 06934995b8c7cbb14cbc2e5be2d86f7a
-SHA256: d54607c408ca430a627d0df52f3f10a41b55df2a420dc312be29ed84a031a9a3
+Filename: pool/main/DBX_0.5.77_arm64.deb
+Size: 27300264
+MD5sum: b5fce15f710900cf9296008bfee8c916
+SHA256: efd6b5f2ec94f4ee461932eafdea069d3e9a6e3c7a7f79648eb9f5c338cb2039
 
 Package: glab
 Version: 1.112.0
@@ -40,6 +26,20 @@ Filename: pool/main/glab_1.112.0_linux_arm64.deb
 Size: 16832370
 MD5sum: 8f1d11e9903626c03815de6232733a10
 SHA256: 3ee7cab44d6fa57037b506e8898e176560ff6de6088adfc8c16e8baf6c81b281
+
+Package: cc-switch
+Version: 3.19.2
+Architecture: arm64
+Installed-Size: 27493
+Maintainer: Jason Young
+Priority: optional
+Depends: libayatana-appindicator3-1, libwebkit2gtk-4.1-0, libgtk-3-0
+Description: All-in-One Assistant for Claude Code, Codex & Gemini CLI
+ (none)
+Filename: pool/main/CC-Switch-v3.19.2-Linux-arm64.deb
+Size: 12621396
+MD5sum: 06934995b8c7cbb14cbc2e5be2d86f7a
+SHA256: d54607c408ca430a627d0df52f3f10a41b55df2a420dc312be29ed84a031a9a3
 
 Package: sourcegit
 Version: 2026.17
