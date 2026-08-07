@@ -1,0 +1,56 @@
+Package: dbx
+Version: 0.5.76
+Architecture: arm64
+Installed-Size: 50758
+Maintainer: skyler
+Priority: optional
+Depends: libappindicator3-1, libwebkit2gtk-4.1-0, libgtk-3-0
+Description: Open-source database management tool
+ (none)
+Filename: pool/main/DBX_0.5.76_arm64.deb
+Size: 26936552
+MD5sum: 40a00a2134271aa4ece703644798e8d0
+SHA256: a93e31b31d44315efee81698d89cd7a0ae12a5470491c19700fca5e3549ab7d3
+
+Package: cc-switch
+Version: 3.19.2
+Architecture: arm64
+Installed-Size: 27493
+Maintainer: Jason Young
+Priority: optional
+Depends: libayatana-appindicator3-1, libwebkit2gtk-4.1-0, libgtk-3-0
+Description: All-in-One Assistant for Claude Code, Codex & Gemini CLI
+ (none)
+Filename: pool/main/CC-Switch-v3.19.2-Linux-arm64.deb
+Size: 12621396
+MD5sum: 06934995b8c7cbb14cbc2e5be2d86f7a
+SHA256: d54607c408ca430a627d0df52f3f10a41b55df2a420dc312be29ed84a031a9a3
+
+Package: glab
+Version: 1.112.0
+Section: 
+Priority: optional
+Architecture: arm64
+Maintainer: GitLab<contact-project+gitlab-org-cli-34675721-issue-@incoming.gitlab.com>
+Installed-Size: 47939
+Depends: git
+Homepage: https://gitlab.com/gitlab-org/cli
+Description: An open source GitLab CLI tool
+Filename: pool/main/glab_1.112.0_linux_arm64.deb
+Size: 16832370
+MD5sum: 8f1d11e9903626c03815de6232733a10
+SHA256: 3ee7cab44d6fa57037b506e8898e176560ff6de6088adfc8c16e8baf6c81b281
+
+Package: sourcegit
+Version: 2026.17
+Priority: optional
+Depends: libx11-6, libice6, libsm6, libicu | libicu78 | libicu77 | libicu76 | libicu74 | libicu72 | libicu71 | libicu70 | libicu69 | libicu68 | libicu67 | libicu66 | libicu65 | libicu63, xdg-utils
+Architecture: arm64
+Installed-Size: 62872
+Maintainer: longshuang@msn.cn
+Description: Open-source & Free Git GUI Client
+Filename: pool/main/sourcegit_2026.17-1_arm64.deb
+Size: 24101080
+MD5sum: 735d78cbe11e980fe2c7f344c3a162d8
+SHA256: 49cfef53dd712f1d78dc9662ea1e5004430b9cba2544534df04e6aa99fb7fec1
+

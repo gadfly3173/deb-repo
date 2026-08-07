@@ -1,0 +1,90 @@
+Package: io.missioncenter
+Version: 1.2.0-1
+Section: utils
+Priority: optional
+Architecture: amd64
+Maintainer: Gadfly <gadfly@gadfly.vip>
+Depends: libc6,libcom-err2,libexpat1,libgcc-s1,libkeyutils1,liblzma5,libselinux1,libstdc++6,zlib1g
+Homepage: https://github.com/gadfly3173/mission-center-deb
+Installed-Size: 127344
+Description: Monitor system resource usage
+ Mission Center monitors CPU, memory, disk, network and GPU usage.
+ It also shows per-application and per-process statistics in a modern GTK interface.
+ This package bundles the newer GTK and libadwaita runtime under /opt/io.missioncenter
+ so it can be built and distributed from GitHub Actions while remaining runnable
+ on Ubuntu 22.04 and newer systems.
+Filename: pool/main/io.missioncenter_1.2.0-1_amd64.deb
+Size: 21496952
+MD5sum: 9ec0054ced0ef548addaf8eb187aa5a9
+SHA256: ba1d774a09de627f25c5629e79a66482678054ddf802b46a3754132bdd03e294
+
+Package: sourcegit
+Version: 2026.17
+Priority: optional
+Depends: libx11-6, libice6, libsm6, libicu | libicu78 | libicu77 | libicu76 | libicu74 | libicu72 | libicu71 | libicu70 | libicu69 | libicu68 | libicu67 | libicu66 | libicu65 | libicu63, xdg-utils
+Architecture: amd64
+Installed-Size: 63752
+Maintainer: longshuang@msn.cn
+Description: Open-source & Free Git GUI Client
+Filename: pool/main/sourcegit_2026.17-1_amd64.deb
+Size: 25821706
+MD5sum: a49c0132f42a7888fee7f186790b60fb
+SHA256: 5f584eb70f8f95f7826018a65fb99e2b32668a3e5f8877fa67742dbc7eaa996e
+
+Package: cc-switch
+Version: 3.19.2
+Architecture: amd64
+Installed-Size: 30101
+Maintainer: Jason Young
+Priority: optional
+Depends: libayatana-appindicator3-1, libwebkit2gtk-4.1-0, libgtk-3-0
+Description: All-in-One Assistant for Claude Code, Codex & Gemini CLI
+ (none)
+Filename: pool/main/CC-Switch-v3.19.2-Linux-x86_64.deb
+Size: 13151722
+MD5sum: addac329b68511d4d574c7542c2fd9b2
+SHA256: e530f35b129e3de34daa4be9a06e587642e58d0a6874f755913d34d0142677f2
+
+Package: dbx
+Version: 0.5.76
+Architecture: amd64
+Installed-Size: 57481
+Maintainer: skyler
+Priority: optional
+Depends: libappindicator3-1, libwebkit2gtk-4.1-0, libgtk-3-0
+Description: Open-source database management tool
+ (none)
+Filename: pool/main/DBX_0.5.76_amd64.deb
+Size: 27846082
+MD5sum: 88f1669bb079c40c263821401243c79a
+SHA256: 5f108ac82ecb53a44877dd5b7ec40bbc7c909d83a01f212127705b577025260d
+
+Package: reqable
+Version: 3.0.40
+Architecture: amd64
+Priority: optional
+Depends: ca-certificates
+Maintainer: Megatron King
+Homepage: https://reqable.com/
+Description: Advanced HTTP Productivity Tools!
+Filename: pool/main/reqable-app-linux-x86_64.deb
+Size: 26013216
+MD5sum: 2339a82d36c487a2366d1da6bf3c3939
+SHA256: 75d6c5924263810c992447bbb0be5c05ba666a64b383b99583fcebde45c62f32
+
+Package: glab
+Version: 1.112.0
+Section: 
+Priority: optional
+Architecture: amd64
+Architecture-Variant: amd64v1
+Maintainer: GitLab<contact-project+gitlab-org-cli-34675721-issue-@incoming.gitlab.com>
+Installed-Size: 51003
+Depends: git
+Homepage: https://gitlab.com/gitlab-org/cli
+Description: An open source GitLab CLI tool
+Filename: pool/main/glab_1.112.0_linux_amd64.deb
+Size: 18257740
+MD5sum: c470fb7acc7b53185794654fa5e4ee0a
+SHA256: 71eb77a13dd57f3add103e979b20dbd9f4730bcaf9501ae2e8ac14cb4585c707
+
