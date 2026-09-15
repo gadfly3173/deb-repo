@@ -1,16 +1,16 @@
 Package: dbx
-Version: 0.6.13
+Version: 0.6.14
 Architecture: arm64
-Installed-Size: 66460
+Installed-Size: 66536
 Maintainer: skyler
 Priority: optional
 Depends: libappindicator3-1, libwebkit2gtk-4.1-0, libgtk-3-0
 Description: Open-source database management tool
  (none)
-Filename: pool/main/DBX_0.6.13_arm64.deb
-Size: 34313020
-MD5sum: 22378506b9081676f62198e55f938573
-SHA256: 079805047afb2aa7de12f0133f321ac4ff820318f4b4e95cd3aaff67003fb80b
+Filename: pool/main/DBX_0.6.14_arm64.deb
+Size: 34345124
+MD5sum: c7415077af2e44eff21b92cbc6b4e993
+SHA256: 0260710999a569b55fea50ba004ad3f682616bf589267fdde0957941612a3c7b
 
 Package: cc-switch
 Version: 3.20.3
