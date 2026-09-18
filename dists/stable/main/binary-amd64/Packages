@@ -27,18 +27,18 @@ MD5sum: 5a5bed7371bc72f7cb25c5f4ba4de725
 SHA256: 2a4a6413594cfaf9b84af33780d32098ee5011092607389a57a8452efa33c698
 
 Package: dbx
-Version: 0.6.15
+Version: 0.6.16
 Architecture: amd64
-Installed-Size: 76219
+Installed-Size: 76522
 Maintainer: skyler
 Priority: optional
 Depends: libappindicator3-1, libwebkit2gtk-4.1-0, libgtk-3-0
 Description: Open-source database management tool
  (none)
-Filename: pool/main/DBX_0.6.15_amd64.deb
-Size: 35971724
-MD5sum: 4c8629273c55adcfb9c9e2e1747a4eb2
-SHA256: 6927b4331421e97439d3291538de126ab22fc2f10d6439e6ce17b43f0c6f0c7f
+Filename: pool/main/DBX_0.6.16_amd64.deb
+Size: 36133104
+MD5sum: acf1577f7aec3b1f8de73a800fd2ae57
+SHA256: 57437c65a41a837996cede9c7a612a9764121ae5b3076921c14b22dceaf251f4
 
 Package: io.missioncenter
 Version: 1.2.0-1
