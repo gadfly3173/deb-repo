@@ -25,6 +25,20 @@ Size: 13189662
 MD5sum: 8d44fd27cf2b0279133ed638183f7639
 SHA256: 515cfcf7dc135337510239be61096499be12a9ed3a67cd93f6b449f499cfc4a3
 
+Package: dbx
+Version: 0.6.32
+Architecture: arm64
+Installed-Size: 77454
+Maintainer: skyler
+Priority: optional
+Depends: libappindicator3-1, libwebkit2gtk-4.1-0, libgtk-3-0
+Description: Open-source database management tool
+ (none)
+Filename: pool/main/DBX_0.6.32_arm64.deb
+Size: 39904680
+MD5sum: 599886f6530b07d3fe6116119dbb8cce
+SHA256: 96649ced1e77940c9e5c130abc0598ace38841eb3a8a08738018ea52d4d907a3
+
 Package: glab
 Version: 1.120.0
 Section: 
@@ -39,18 +53,4 @@ Filename: pool/main/glab_1.120.0_linux_arm64.deb
 Size: 17014842
 MD5sum: 35670391bc9c583d583f76771417ad81
 SHA256: aa5e3eb58e7de7c001a884699974889f13b8dbbf887182b5d7fe892253ab5287
-
-Package: dbx
-Version: 0.6.31
-Architecture: arm64
-Installed-Size: 77466
-Maintainer: skyler
-Priority: optional
-Depends: libappindicator3-1, libwebkit2gtk-4.1-0, libgtk-3-0
-Description: Open-source database management tool
- (none)
-Filename: pool/main/DBX_0.6.31_arm64.deb
-Size: 39924494
-MD5sum: 10395f2fe1dbf629faca9ad63c8d3ea1
-SHA256: b2780bff462d1893cfd0b6e2ffe3cf964ffe7b64895728c08d25d11f1e6246af
 

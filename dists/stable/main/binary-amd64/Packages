@@ -18,6 +18,20 @@ Size: 21496952
 MD5sum: 9ec0054ced0ef548addaf8eb187aa5a9
 SHA256: ba1d774a09de627f25c5629e79a66482678054ddf802b46a3754132bdd03e294
 
+Package: dbx
+Version: 0.6.32
+Architecture: amd64
+Installed-Size: 87549
+Maintainer: skyler
+Priority: optional
+Depends: libappindicator3-1, libwebkit2gtk-4.1-0, libgtk-3-0
+Description: Open-source database management tool
+ (none)
+Filename: pool/main/DBX_0.6.32_amd64.deb
+Size: 41486374
+MD5sum: 90a3bf7c7ecc2bbbbf382566389f6452
+SHA256: 6898293ca91131c69e7a237ba52dc7a297ad57099628b182387f441cbec9cf8b
+
 Package: reqable
 Version: 3.0.40
 Architecture: amd64
@@ -59,20 +73,6 @@ Filename: pool/main/CC-Switch-v3.20.4-Linux-x86_64.deb
 Size: 13746960
 MD5sum: 25e5d90b37b2893848274499da86c5f2
 SHA256: 434557d3ae08b792c8138c5508f104e799f36d2ced563fb94b3a86ffbb250801
-
-Package: dbx
-Version: 0.6.31
-Architecture: amd64
-Installed-Size: 87542
-Maintainer: skyler
-Priority: optional
-Depends: libappindicator3-1, libwebkit2gtk-4.1-0, libgtk-3-0
-Description: Open-source database management tool
- (none)
-Filename: pool/main/DBX_0.6.31_amd64.deb
-Size: 41504654
-MD5sum: 4f7ab3562ba63f725e62ae37251522aa
-SHA256: 36498b00240c24aeb0ca751d12bade2230b5d51a9f53cf0ee99218e1470cd56a
 
 Package: sourcegit
 Version: 2026.21
