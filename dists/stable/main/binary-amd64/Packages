@@ -18,20 +18,6 @@ Size: 21496952
 MD5sum: 9ec0054ced0ef548addaf8eb187aa5a9
 SHA256: ba1d774a09de627f25c5629e79a66482678054ddf802b46a3754132bdd03e294
 
-Package: cc-switch
-Version: 4.0.6
-Architecture: amd64
-Installed-Size: 39817
-Maintainer: Jason Young
-Priority: optional
-Depends: libayatana-appindicator3-1, libwebkit2gtk-4.1-0, libgtk-3-0
-Description: All-in-One Assistant for Claude Code, Codex & Gemini CLI
- (none)
-Filename: pool/main/CC-Switch-v4.0.6-Linux-x86_64.deb
-Size: 16892764
-MD5sum: da23f7b861f39b6a78bcc9571cbdc7ce
-SHA256: 01229013a69007a2366a90f5bff702e0df9cf0533b8ae90c8cbf2497aa2cc80e
-
 Package: glab
 Version: 1.122.0
 Section: 
@@ -47,6 +33,20 @@ Size: 18692464
 MD5sum: 159c723c52e73d904b6eb5b732997822
 SHA256: ab853b5e4ab83a42f804c1394b108a698601ae0f37411ba8db0a68c2725c69f6
 
+Package: dbx
+Version: 0.6.39
+Architecture: amd64
+Installed-Size: 89895
+Maintainer: skyler
+Priority: optional
+Depends: libappindicator3-1, libwebkit2gtk-4.1-0, libgtk-3-0
+Description: Open-source database management tool
+ (none)
+Filename: pool/main/DBX_0.6.39_amd64.deb
+Size: 42840280
+MD5sum: 317f9d9e5094ad89897f39e551a4fa2a
+SHA256: fad6bb43a6be289cdac3c14886e42e5cf013b608d6230105b700fbe413b3e10a
+
 Package: reqable
 Version: 3.0.40
 Architecture: amd64
@@ -60,19 +60,19 @@ Size: 26013216
 MD5sum: 2339a82d36c487a2366d1da6bf3c3939
 SHA256: 75d6c5924263810c992447bbb0be5c05ba666a64b383b99583fcebde45c62f32
 
-Package: dbx
-Version: 0.6.38
+Package: cc-switch
+Version: 4.0.7
 Architecture: amd64
-Installed-Size: 89773
-Maintainer: skyler
+Installed-Size: 39925
+Maintainer: Jason Young
 Priority: optional
-Depends: libappindicator3-1, libwebkit2gtk-4.1-0, libgtk-3-0
-Description: Open-source database management tool
+Depends: libayatana-appindicator3-1, libwebkit2gtk-4.1-0, libgtk-3-0
+Description: All-in-One Assistant for Claude Code, Codex & Gemini CLI
  (none)
-Filename: pool/main/DBX_0.6.38_amd64.deb
-Size: 42758490
-MD5sum: baddbf091f6d2607dcf1a6fb917cfb2c
-SHA256: 9cde3ae2b459ca9ce5b1af9e06c8764d43970b9224a692312e6bc0683e516bd5
+Filename: pool/main/CC-Switch-v4.0.7-Linux-x86_64.deb
+Size: 16934062
+MD5sum: f6e443e0abfdd6862d061c030e204bc1
+SHA256: ea96076b5545a7c3ed180e7de1b3c79c306a5e1905469087cb0ada1ff5f1f1cc
 
 Package: sourcegit
 Version: 2026.21
