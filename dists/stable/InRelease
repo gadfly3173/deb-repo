@@ -1,0 +1,36 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Origin: Deb Repo
+Label: Deb Repo
+Suite: stable
+Codename: stable
+Architectures: amd64 arm64
+Components: main
+Date: Fri, 09 Oct 2026 14:59:48 +0000
+MD5Sum:
+ 4b18cf21b84be5aca711565e19885e37             3150 main/binary-amd64/Packages
+ 562693152cdfd98a5f46e03e4cca3257             1524 main/binary-amd64/Packages.gz
+ 0421a2eed1e3903d12a2dd70e23d7186             1868 main/binary-arm64/Packages
+ 2df393d770e9e5241fb6a474bf0011b5              929 main/binary-arm64/Packages.gz
+SHA256:
+ c7e93dbfb262329ad8303bef45528acc4a8071392c2fad5272c3714443c0ad93             3150 main/binary-amd64/Packages
+ 0e16a942f227c1a88036cfcb045fd7e9698c119906d7727d2599c8b3a2268a25             1524 main/binary-amd64/Packages.gz
+ 06dc3d553531c0e903f8d806e4dd94eb6f1eb1355e317b582b8ee45606f0e2ea             1868 main/binary-arm64/Packages
+ 421390da2f33764e2555decde3a38d5b3ee4ebdee2cc0255a6118e4e35e3c161              929 main/binary-arm64/Packages.gz
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEdtfvsDstRx1DTdOlkSgUX5PPxpwFAmrJAWQACgkQkSgUX5PP
+xpwAyhAAu4JJAnwDnwYI4f0JMnl1tvJMZ+jJiYB8aLDdVBZ9n9PBCjNz+Du4DPM1
+ZKpU47vS8PoZGaSNzv45591jhgXDGwcqEEwdFm6kNGITNVBrWZse5uxD1/bkavQM
++ZPe4jyCkYtoDIyjJDTpQS/uIEgH3deAjD8KHc9A6GLHia7WXLKr9fINond6NZHJ
+QeQJZFdcmkOQ1EPqYnrhLHK3dPEbC/+ItVrzMGI/jwca8DaR3UKtK1dry2dYpFha
+7xtyVA8V+mLoL5Y+kMMnHyK7y6VPBcQRRYew9TrgsAHaaZyyXk3MgQpkcAGmcqTd
+tUI2Lu9/exR2OTejFeiagLboUK0zEjrw1non69OfY5d3A4Low220T8YVijrdlAyQ
+ZxRZiejSVv+e3huouOQCtSoVL/TBS2PQMEtb3G5xB9eIS/ar9xnHvnyohqjqbdIM
+iMM+pzIVaRERzsGb9Aon9Z70JBJJtndXlJm8XCkfZWa5Va+awJ8XkudPBPExrfw4
+CdElNxsULOwucFd4tmrgl6NjHW7bXpYezNKIwy4oDCpepP3EiiN7quvGhqPern5w
+QAprBKcQ7FsIUIySxfBJfJXH+A49vXmA8w7g9ZkWLOvk2Keq/Nz9NxJCOMm2RUj0
+wUezlWJDWmNdBhxqU0iGrj8iYtefvOEqtPmqdK5kRBDivBfNFQc=
+=nogx
+-----END PGP SIGNATURE-----
