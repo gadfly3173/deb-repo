@@ -46,19 +46,19 @@ Size: 18711334
 MD5sum: f1e8f8c15834faf56fb4da8760d7acfc
 SHA256: 0effb3e550b80fd826b5a50655acc7fe7142728d0afe9a1d5d857aa2fc651f5a
 
-Package: cc-switch
-Version: 4.0.14
+Package: dbx
+Version: 0.6.47
 Architecture: amd64
-Installed-Size: 40644
-Maintainer: Jason Young
+Installed-Size: 91361
+Maintainer: skyler
 Priority: optional
-Depends: libayatana-appindicator3-1, libwebkit2gtk-4.1-0, libgtk-3-0
-Description: All-in-One Assistant for Claude Code, Codex & Gemini CLI
+Depends: libappindicator3-1, libwebkit2gtk-4.1-0, libgtk-3-0
+Description: Open-source database management tool
  (none)
-Filename: pool/main/CC-Switch-v4.0.14-Linux-x86_64.deb
-Size: 17331016
-MD5sum: d5041d92eb051c67dd548e1b298b6445
-SHA256: 42c6e54ac4f2cec162e8257110227883c2b99402df225146c412950effe57f7e
+Filename: pool/main/DBX_0.6.47_amd64.deb
+Size: 43859870
+MD5sum: d9ea068ff3d29f150d38e48bee149661
+SHA256: 613d81b6ac4b2990b18a7d1c626ab0700e623e17cbf087a14649f71c418cd474
 
 Package: sourcegit
 Version: 2026.22
@@ -73,17 +73,17 @@ Size: 26106942
 MD5sum: fe44811ebf2e760ebe995da0f6615f37
 SHA256: dfe0532f538ed368638b4e8d3e6482c6e1048bfaac8a23f5e5975e7eb883d0b7
 
-Package: dbx
-Version: 0.6.46
+Package: cc-switch
+Version: 4.0.15
 Architecture: amd64
-Installed-Size: 91231
-Maintainer: skyler
+Installed-Size: 40881
+Maintainer: Jason Young
 Priority: optional
-Depends: libappindicator3-1, libwebkit2gtk-4.1-0, libgtk-3-0
-Description: Open-source database management tool
+Depends: libayatana-appindicator3-1, libwebkit2gtk-4.1-0, libgtk-3-0
+Description: All-in-One Assistant for Claude Code, Codex & Gemini CLI
  (none)
-Filename: pool/main/DBX_0.6.46_amd64.deb
-Size: 43790854
-MD5sum: 7d48ab72b27dd3cdf602f6eecfa97a5e
-SHA256: 62cf29cdf00c1b337f607c8105c5c75332932aae79792c2eae857a9ee28fb3ea
+Filename: pool/main/CC-Switch-v4.0.15-Linux-x86_64.deb
+Size: 17443046
+MD5sum: 606a107ca79517631ab056084f1c34fc
+SHA256: 16f0241a6d25b8eb2e7d6d4e441a6e8da6e5b37b638f57fc6c8cda37e5e3957f
 
