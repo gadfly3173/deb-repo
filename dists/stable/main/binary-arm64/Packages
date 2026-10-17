@@ -1,0 +1,56 @@
+Package: dbx
+Version: 0.6.46
+Architecture: arm64
+Installed-Size: 80862
+Maintainer: skyler
+Priority: optional
+Depends: libappindicator3-1, libwebkit2gtk-4.1-0, libgtk-3-0
+Description: Open-source database management tool
+ (none)
+Filename: pool/main/DBX_0.6.46_arm64.deb
+Size: 42080842
+MD5sum: 39d95c6dd891f79991854aa4af2ce0cf
+SHA256: ad26d1d6c66e9654c2f8647efae6ee39915e7b198e48a385256e1f25f49cd218
+
+Package: cc-switch
+Version: 4.0.14
+Architecture: arm64
+Installed-Size: 37292
+Maintainer: Jason Young
+Priority: optional
+Depends: libayatana-appindicator3-1, libwebkit2gtk-4.1-0, libgtk-3-0
+Description: All-in-One Assistant for Claude Code, Codex & Gemini CLI
+ (none)
+Filename: pool/main/CC-Switch-v4.0.14-Linux-arm64.deb
+Size: 16613874
+MD5sum: 948402b378974eab7ea78d0f895ea3c2
+SHA256: fa8e0f8a9c0f64d75da2d7adaa1cd03f90bd870efee160629fd68ad94ba02768
+
+Package: sourcegit
+Version: 2026.22
+Priority: optional
+Depends: libx11-6, libice6, libsm6, libicu | libicu78 | libicu77 | libicu76 | libicu74 | libicu72 | libicu71 | libicu70 | libicu69 | libicu68 | libicu67 | libicu66 | libicu65 | libicu63, xdg-utils
+Architecture: arm64
+Installed-Size: 63724
+Maintainer: longshuang@msn.cn
+Description: Open-source & Free Git GUI Client
+Filename: pool/main/sourcegit_2026.22-1_arm64.deb
+Size: 24367476
+MD5sum: fd56c42b39e18c566c0c29a1ccdf6453
+SHA256: f44294bcadea978658ab28de563bcbd5190dbfffa8ef84589cd1a2d6a1ab7796
+
+Package: glab
+Version: 1.123.0
+Section: 
+Priority: optional
+Architecture: arm64
+Maintainer: GitLab<contact-project+gitlab-org-cli-34675721-issue-@incoming.gitlab.com>
+Installed-Size: 48069
+Depends: git
+Homepage: https://gitlab.com/gitlab-org/cli
+Description: An open source GitLab CLI tool
+Filename: pool/main/glab_1.123.0_linux_arm64.deb
+Size: 17153274
+MD5sum: a18634f92682bd700b56e5c5f2ce5c98
+SHA256: f7c1930977fdd75bea6735eed0b628d4411536b3208c124101db42d6cfb9378e
+
